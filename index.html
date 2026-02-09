@@ -25,10 +25,7 @@
     <!-- Top Nav -->
     <header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur">
       <div class="mx-auto flex max-w-5xl items-center justify-between px-5 py-7">
-
-        <!-- LOGO ADDED -->
         <a href="#top" class="flex items-center gap-3 font-semibold tracking-tight text-xl">
-          
           <span>WM</span>
         </a>
 
@@ -71,12 +68,65 @@
 
       <!-- About -->
       <section id="about" class="scroll-mt-20 py-10">
-        <h2 class="text-2xl font-semibold tracking-tight">About</h2>
+        <h2 class="text-2xl font-semibold tracking-tight">About Me</h2>
+
         <p class="mt-4 max-w-3xl leading-relaxed text-zinc-300">
           I am a full stack developer who enjoys building responsive and interactive web and mobile apps.
           I work with JavaScript, Next.js, Node.js, PostgreSQL, Java, Python, HTML, CSS, and Git.
           I want to grow more into Machine Learning and AI over time.
         </p>
+
+        <!-- NEW: Education / Certifications / Training -->
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          <!-- Education -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-zinc-200">Education</h3>
+            <ul class="mt-4 space-y-3 text-sm text-zinc-300">
+              <li>
+                <p class="font-medium text-zinc-100">Bachelor of Science, Software Engineering</p>
+                <p class="text-zinc-400">Western Governor's University · 2026</p>
+              </li>
+              <li>
+                <p class="font-medium text-zinc-100">Bachelor of Science, Mechanical Engineering</p>
+                <p class="text-zinc-400">Universidade Estacio de Sa · 2016</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Certifications -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-zinc-200">Certifications</h3>
+            <ul class="mt-4 space-y-3 text-sm text-zinc-300">
+              <li>
+                <p class="font-medium text-zinc-100">AWS Certified Machine Learning Engineer Associate</p>
+                <p class="text-zinc-400">AWS · 2026</p>
+              </li>
+              <li>
+                <p class="font-medium text-zinc-100">Comptia Project+</p>
+                <p class="text-zinc-400">Comptia · 2026</p>
+              </li>
+              <li>
+                <p class="font-medium text-zinc-100">AWS Certified Cloud Practitioner</p>
+                <p class="text-zinc-400">AWS · 2024</p>
+              </li>
+              <li>
+                <p class="font-medium text-zinc-100">Google IT Support Professional</p>
+                <p class="text-zinc-400">Google · 2023</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Training -->
+          <div class="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-zinc-200">Training</h3>
+            <ul class="mt-4 space-y-3 text-sm text-zinc-300">
+              <li>
+                <p class="font-medium text-zinc-100">Ignition Software v8.3</p>
+                <p class="text-zinc-400">Inductive University · 2026</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <!-- Skills -->
@@ -119,36 +169,32 @@
         </div>
 
         <div id="projectGrid" class="mt-6 grid gap-4 sm:grid-cols-2">
-          <!-- Project Card -->
-          <article class="project rounded-xl border border-zinc-800 bg-zinc-900/40 p-5" data-tags="python,sql,etl">
+          <article class="project rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
             <h3 class="text-lg font-medium">Front-End Web Development</h3>
             <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-              This project involves building a multi-page, user-focused website using HTML, CSS, and JavaScript, with consistent navigation, responsive styling, and a data-entry form that includes basic client-side validation and content structure requirements.
+              Multi-page responsive website with structured content, forms, and client-side validation.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
               <span class="chip">JavaScript</span>
-              <span class="chip">SQL</span>
-              <span class="chip">Data</span>
             </div>
             <div class="mt-5 flex gap-3 text-sm">
-              <a class="link" href="https://github.com/wallacemendoza/front-end-web-development" target="_blank" rel="noreferrer">Code</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Live</a>
+              <a class="link" href="https://github.com/wallacemendoza/front-end-web-development" target="_blank">Code</a>
             </div>
           </article>
 
-          <article class="project rounded-xl border border-zinc-800 bg-zinc-900/40 p-5" data-tags="web,js,ui">
+          <article class="project rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
             <h3 class="text-lg font-medium">Version Control</h3>
             <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-              This project focuses on using Git and GitLab to implement version control workflows, including branching, committing, merging, resolving conflicts, tagging releases, and documenting changes.
+              Git workflows including branching, merging, conflict resolution, tagging, and documentation.
             </p>
             <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip">JavaScript</span>
-              <span class="chip">HTML</span>
-              <span class="chip">UX</span>
+              <span class="chip">Git</span>
+              <span class="chip">GitHub</span>
             </div>
             <div class="mt-5 flex gap-3 text-sm">
-              <a class="link" href="https://github.com/wallacemendoza/version-control" target="_blank" rel="noreferrer">Code</a>
-              <a class="link" href="#" target="_blank" rel="noreferrer">Live</a>
+              <a class="link" href="https://github.com/wallacemendoza/version-control" target="_blank">Code</a>
             </div>
           </article>
         </div>
