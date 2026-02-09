@@ -1,0 +1,40 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgb(63 63 70);
+  background: rgba(24, 24, 27, 0.6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: rgb(228 228 231);
+}
+
+.link {
+  color: rgb(212 212 216);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.link:hover {
+  color: white;
+}
+
+/* typed name cursor */
+.type::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 6px;
+  background: currentColor;
+  animation: blink 1s steps(2, start) infinite;
+  vertical-align: -2px;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type::after { animation: none; }
+}
