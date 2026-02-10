@@ -6,7 +6,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // typing loop
 const typeEl = document.getElementById("typeTarget");
-const phrases = ["Wallace Mendoza", "a Software Engineer", "a Full Stack Developer"];
+const phrases = ["Wallace Mendoza", "a Backend Software Engineer", "a Platform Software Engineer"];
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
