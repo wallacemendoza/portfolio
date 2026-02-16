@@ -17,7 +17,7 @@
 ![CSS](https://img.shields.io/badge/CSS-28.6%25-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JS-12.6%25-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-**[🌐 LIVE SITE](https://wallacemendoza.github.io/portfolio/)** • **[📧 CONTACT](mailto:wmendoza.dev@outlook.com)** • **[💼 LINKEDIN](linkedin.com/in/wallacemendoza)**
+**[🌐 LIVE SITE](https://wallacemendoza.github.io/portfolio/)** • **[📧 CONTACT](mailto:wmendoza.dev@outlook.com)** • **[💼 LINKEDIN](https://www.linkedin.com/in/wallacemendoza)**
 
 </div>
 
