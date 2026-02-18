@@ -1,171 +1,264 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wallace Mendoza | Portfolio</title>
+    <title>Wallace Mendoza | Software Engineer</title>
 
-    <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Tailwind config (optional, but keeps things consistent) -->
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['ui-sans-serif','system-ui','-apple-system','Segoe UI','Roboto','Inter','Arial','Noto Sans','sans-serif'],
+              sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+              mono: ['JetBrains Mono', 'monospace']
             }
           }
         }
       }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
       html { scroll-behavior: smooth; }
+      * { box-sizing: border-box; }
     </style>
 
-    <link rel="stylesheet" href="./styles.css?v=9" />
+    <link rel="stylesheet" href="./styles.css?v=10" />
+    <meta name="cf-email-protection" content="off" />
 
-
-    <!-- Favicons (cache-busted) -->
     <link rel="icon" href="./favicon.ico?v=3" sizes="any">
     <link rel="icon" type="image/png" href="./favicon-32x32.png?v=3" sizes="32x32">
     <link rel="icon" type="image/png" href="./favicon-16x16.png?v=3" sizes="16x16">
     <link rel="apple-touch-icon" href="./apple-touch-icon.png?v=3">
   </head>
 
-  <body class="bg-zinc-950 text-zinc-100 antialiased">
-    <!-- Ambient background -->
-    <div class="ambient" aria-hidden="true">
-      <div class="blob blob-a"></div>
-      <div class="blob blob-b"></div>
-      <div class="gridfade"></div>
-      <div class="vignette"></div>
+  <body class="bg-black text-zinc-100 antialiased overflow-x-hidden">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div class="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-black"></div>
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+      <div class="glow-orb glow-orb-2"></div>
+      <div class="glow-orb glow-orb-3"></div>
+      <canvas id="particleCanvas" class="absolute inset-0 opacity-40"></canvas>
     </div>
 
-    <!-- Top Nav -->
-    <header class="topnav sticky top-0 z-50">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#top" class="brand flex items-center gap-3 tracking-tight">
-          <span class="brandMark">WM</span>
-          <span class="hidden sm:block text-sm text-zinc-300">Wallace Mendoza</span>
-        </a>
-
-        <nav class="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
-          <a class="navlink" href="#about">About</a>
-          <a class="navlink" href="#skills">Skills</a>
-          <a class="navlink" href="#projects">Projects</a>
-          <a class="navlink" href="#contact">Contact</a>
-        </nav>
-
-        <div class="flex items-center gap-3">
-          <a class="btn btn-ghost hidden sm:inline-flex"
-             href="https://github.com/wallacemendoza" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          <a class="btn btn-ghost hidden sm:inline-flex"
-             href="https://www.linkedin.com/in/wallacemendoza/" target="_blank" rel="noreferrer">
-            LinkedIn
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href="#top" class="logo-badge">
+            <span class="text-lg font-bold tracking-tight">WM</span>
           </a>
 
-          <!-- Mobile menu button -->
-          <button id="menuBtn" class="btn btn-ghost md:hidden" type="button" aria-label="Open menu">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#certifications" class="nav-link">Certifications</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a href="https://github.com/wallacemendoza" target="_blank" class="social-link hidden sm:flex">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/wallacemendoza/" target="_blank" class="social-link hidden sm:flex">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <button id="menuBtn" class="md:hidden burger-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Mobile menu panel -->
-      <div id="mobileMenu" class="mobileMenu hidden md:hidden">
-        <div class="mx-auto max-w-6xl px-5 pb-4">
-          <div class="panel">
-            <a class="navlink block py-2" href="#about">About</a>
-            <a class="navlink block py-2" href="#skills">Skills</a>
-            <a class="navlink block py-2" href="#projects">Projects</a>
-            <a class="navlink block py-2" href="#contact">Contact</a>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <a class="btn btn-ghost" href="https://github.com/wallacemendoza" target="_blank" rel="noreferrer">GitHub</a>
-              <a class="btn btn-ghost" href="https://www.linkedin.com/in/wallacemendoza/" target="_blank" rel="noreferrer">LinkedIn</a>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 mobile-menu">
+          <div class="space-y-2">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#skills" class="mobile-link">Skills</a>
+            <a href="#certifications" class="mobile-link">Certifications</a>
+            <a href="#projects" class="mobile-link">Projects</a>
+            <a href="#contact" class="mobile-link">Contact</a>
           </div>
         </div>
       </div>
-    </header>
+    </nav>
 
-    <main id="top" class="mx-auto max-w-6xl px-4">
-      <!-- Hero sectionn-->
-      <section class="py-16 sm:py-20">
-        <div class="heroCard rounded-2xl border border-zinc-800/70 bg-zinc-950/40 p-7 sm:p-10">
-          <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p class="text-xs uppercase tracking-widest text-zinc-400">Backend & Platform | Distributed Systems | Cloud & SRE | Security</p>
+    <main class="relative z-10">
 
-              <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-                <span class="text-zinc-100">I’m</span>
-                <span id="typeTarget" class="type ml-2"></span>
-              </h1>
+      <!-- Hero Section -->
+      <section id="top" class="min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20 w-full">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full status-badge">
+                <span class="pulse-dot"></span>
+                <span class="text-xs font-mono uppercase tracking-wider">Available for opportunities</span>
+              </div>
 
-              <p class="mt-5 max-w-2xl text-base leading-relaxed text-zinc-300">
-                I build clean, practical web apps with strong engineering fundamentals. Professional UI, sharp UX, and code that holds up.
+              <div>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                  <span class="text-gradient">Wallace Mendoza</span>
+                </h1>
+                <div class="mt-4 text-2xl sm:text-3xl font-light text-zinc-400">
+                  <span id="typeTarget" class="typing-text"></span>
+                </div>
+              </div>
+
+              <p class="text-lg text-zinc-400 leading-relaxed max-w-xl">
+                Software Engineer building scalable, production-grade systems. Specializing in backend architecture, cloud infrastructure, and full-stack development.
               </p>
 
-              <div class="mt-7 flex flex-wrap gap-3">
-                <a class="btn btn-primary" href="#projects">
+              <div class="flex flex-wrap gap-4">
+                <a href="#projects" class="cta-btn primary-btn">
                   View Projects
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                  </svg>
                 </a>
-                <a class="btn btn-glow"
-                   href="mailto:wmendoza.dev@outlook.com">
-                  Email Me
-                </a>
-                <!-- Optional: add your resume file and update href -->
-                <a class="btn btn-ghost"
-                   href="./resume.pdf" target="_blank" rel="noreferrer">
-                  Resume
+                <a href="mailto:wmendoza.dev@outlook.com" class="cta-btn secondary-btn">
+                  Get in Touch
                 </a>
               </div>
 
-              <div class="mt-8 flex flex-wrap gap-2 text-xs text-zinc-400">
-                <span class="pill">Java</span>
-                <span class="pill">Node.js</span>
-                <span class="pill">Python</span>
-                <span class="pill">PostgreSQL</span>
-                <span class="pill">HTML/CSS</span>
-                <span class="pill">Git</span>
+              <div class="flex flex-wrap gap-3">
+                <span class="tech-pill">Java</span>
+                <span class="tech-pill">Spring Boot</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Docker</span>
+                <span class="tech-pill">AWS</span>
               </div>
             </div>
 
-            <div class="heroSide rounded-2xl border border-zinc-800/70 bg-zinc-950/50 p-6">
-              <div class="flex items-center justify-between">
-                <p class="text-sm font-medium text-zinc-200">Current Focus</p>
-                <span class="statusDot" aria-hidden="true"></span>
-              </div>
-              <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-                <li class="flex gap-3">
-                  <span class="bullet"></span>
-                  <span>Full stack fundamentals and shipping projects</span>
-                </li>
-                <li class="flex gap-3">
-                  <span class="bullet"></span>
-                  <span>Backend APIs, auth, and database workflows</span>
-                </li>
-                <li class="flex gap-3">
-                  <span class="bullet"></span>
-                  <span>Clean UI with modern interactions</span>
-                </li>
-              </ul>
+            <div class="hidden lg:block">
+              <div class="hero-card">
+                <div class="space-y-6">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-400">System Status</h3>
+                    <div class="flex items-center gap-2">
+                      <div class="status-indicator active"></div>
+                      <span class="text-xs text-green-400 font-mono">ONLINE</span>
+                    </div>
+                  </div>
 
-              <div class="mt-6 grid grid-cols-2 gap-3 text-xs">
-                <div class="stat">
-                  <p class="text-zinc-400">Engineering Experience</p>
-                  <p class="mt-1 text-sm font-semibold text-zinc-100">5 yrs Eng</p>
+                  <div class="space-y-4">
+                    <div class="metric-card">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-zinc-500 font-mono">Backend Systems</span>
+                        <span class="text-xs text-cyan-400 font-mono">98%</span>
+                      </div>
+                      <div class="progress-bar"><div class="progress-fill" style="width: 98%"></div></div>
+                    </div>
+
+                    <div class="metric-card">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-zinc-500 font-mono">Cloud Architecture</span>
+                        <span class="text-xs text-purple-400 font-mono">95%</span>
+                      </div>
+                      <div class="progress-bar"><div class="progress-fill purple" style="width: 95%"></div></div>
+                    </div>
+
+                    <div class="metric-card">
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs text-zinc-500 font-mono">Full Stack Development</span>
+                        <span class="text-xs text-pink-400 font-mono">92%</span>
+                      </div>
+                      <div class="progress-bar"><div class="progress-fill pink" style="width: 92%"></div></div>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-800/50">
+                    <div class="stat-box">
+                      <div class="text-2xl font-bold text-gradient">5+</div>
+                      <div class="text-xs text-zinc-500 mt-1">Years Experience</div>
+                    </div>
+                    <div class="stat-box">
+                      <div class="text-2xl font-bold text-gradient">15+</div>
+                      <div class="text-xs text-zinc-500 mt-1">Projects</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="stat">
-                  <p class="text-zinc-400">Software Experience</p>
-                  <p class="mt-1 text-sm font-semibold text-zinc-100">3 yrs Acad</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-8 mt-12">
+            <div class="lg:col-span-2 space-y-6">
+              <div class="glass-card p-8">
+                <p class="text-zinc-300 leading-relaxed">
+                  I am a Software Engineer with expertise in full-stack development and industrial systems engineering. With a BS in Software Engineering and five years of reliability engineering experience, I bring a unique perspective that bridges code and critical infrastructure.
+                </p>
+                <p class="text-zinc-300 leading-relaxed mt-4">
+                  My technical stack includes Java, Spring Boot, Python, JavaScript, TypeScript, Angular, React, MySQL, Docker, and AWS. I build production-grade applications ranging from enterprise e-commerce platforms and cloud-native microservices to native Android apps and interactive data visualization tools.
+                </p>
+                <p class="text-zinc-300 leading-relaxed mt-4">
+                  My background in mechanical systems and predictive maintenance informs how I architect software: I prioritize reliability, performance optimization, and systems-level thinking. I excel at translating complex operational challenges into elegant software solutions.
+                </p>
+                <p class="text-zinc-300 leading-relaxed mt-4">
+                  I am pursuing software engineering roles where I can leverage both technical depth and domain expertise to build systems that solve meaningful problems at scale.
+                </p>
+
+                <div class="flex flex-wrap gap-3 mt-6">
+                  <span class="feature-pill">Systems Thinking</span>
+                  <span class="feature-pill">Reliability Mindset</span>
+                  <span class="feature-pill">Clean Architecture</span>
+                  <span class="feature-pill">Production Ready</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="glass-card p-6">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 mb-4">Education</h3>
+                <div class="space-y-4">
+                  <div>
+                    <div class="font-semibold text-white">B.S. Software Engineering</div>
+                    <div class="text-sm text-zinc-500 mt-1">Western Governor's University</div>
+                    <div class="text-xs text-cyan-400 mt-1 font-mono">2026</div>
+                  </div>
+                  <div>
+                    <div class="font-semibold text-white">B.S. Mechanical Engineering</div>
+                    <div class="text-sm text-zinc-500 mt-1">Universidade Estacio de Sa</div>
+                    <div class="text-xs text-cyan-400 mt-1 font-mono">2016</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card p-6">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-zinc-400 mb-4">Quick Stats</h3>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-zinc-400">Code Quality</span>
+                    <span class="text-sm text-green-400 font-mono">A+</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-zinc-400">Response Time</span>
+                    <span class="text-sm text-cyan-400 font-mono">&lt;24h</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm text-zinc-400">Project Success</span>
+                    <span class="text-sm text-purple-400 font-mono">100%</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -173,260 +266,353 @@
         </div>
       </section>
 
-      <!-- About -->
-      <section id="about" class="scroll-mt-24 py-10">
-        <div class="sectionHead">
-          <h2 class="text-2xl font-semibold tracking-tight">About Me</h2>
-          <p class="mt-2 text-sm text-zinc-400">Learn a little bit about me.</p>
-        </div>
+      <!-- Skills Section -->
+      <section id="skills" class="py-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="section-header">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="section-line"></div>
+            <p class="text-zinc-500 mt-4">Hybrid skill set spanning software engineering and systems optimization</p>
+          </div>
 
-        <div class="mt-6 grid gap-6 lg:grid-cols-3">
-          <div class="lg:col-span-2">
-            <div class="card">
-              <p class="leading-relaxed text-zinc-300">
-                I am a Full Stack Developer and Software Engineer with a mechanical engineering background and five years of industry experience in reliability and asset health engineering. I am transitioning fully into software engineering and actively pursuing full-time roles in this field.
-              </p>
-              <p class="mt-4 leading-relaxed text-zinc-300">
-               I have two years of academic software development experience and hands-on project work using Java, Python, Node.js, HTML, and CSS. My projects focus on building functional, end-to-end applications and applying solid engineering fundamentals such as structured problem solving, version control, and maintainable code. All of my work is publicly available on GitHub.
-              </p>
-              <p class="mt-4 leading-relaxed text-zinc-300">
-              My mechanical engineering background shapes how I approach software development: I value correctness, reliability, and systems thinking. I am comfortable learning new technologies quickly, working through complex technical problems, and delivering solutions that work in practice, not just in theory.
-              </p>
-              <p class="mt-4 leading-relaxed text-zinc-300">
-              My goal is to fully pivot into software engineering and contribute as a developer on real production systems, continuing to grow my skills across backend, frontend, and system-level design.
-              </p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Core Web</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">HTML5</span>
+                <span class="skill-tag">CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">REST APIs</span>
+              </div>
+            </div>
 
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="pill">Systems thinking</span>
-                <span class="pill">Reliability mindset</span>
-                <span class="pill">Clean code</span>
-                <span class="pill">Real deliverables</span>
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Frontend</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Angular</span>
+                <span class="skill-tag">Next.js</span>
+                <span class="skill-tag">Tailwind</span>
+                <span class="skill-tag">Webpack</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Backend</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">GraphQL</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Data</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">Data Modeling</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Cloud & DevOps</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">CI/CD</span>
+                <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Git</span>
+              </div>
+            </div>
+
+            <div class="skill-card">
+              <div class="skill-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold mb-3">Engineering Edge</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">ML</span>
+                <span class="skill-tag">IoT</span>
+                <span class="skill-tag">Predictive Analytics</span>
               </div>
             </div>
           </div>
-
-          <aside class="space-y-4">
-            <div class="card">
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-300">Education</h3>
-              <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-                <li>
-                  <p class="font-medium text-zinc-100">B.S. Software Engineering</p>
-                  <p class="text-zinc-400">Western Governor’s University · 2026</p>
-                </li>
-                <li>
-                  <p class="font-medium text-zinc-100">B.S. Mechanical Engineering</p>
-                  <p class="text-zinc-400">Universidade Estacio de Sa · 2016</p>
-                </li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-300">Certifications</h3>
-              <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-                  <li>
-                  <p class="font-medium text-zinc-100">AWS Certified Machine Learning Engineer</p>
-                  <p class="text-zinc-400">AWS · 2026</p>
-                </li>
-                  <li>
-                  <p class="font-medium text-zinc-100">CompTIA Project+</p>
-                  <p class="text-zinc-400">CompTIA · 2026</p>
-                </li>
-                <li>
-                  <p class="font-medium text-zinc-100">AWS Certified Cloud Practitioner</p>
-                  <p class="text-zinc-400">AWS · 2024</p>
-                </li>
-                <li>
-                  <p class="font-medium text-zinc-100">Google IT Support Professional</p>
-                  <p class="text-zinc-400">Google · 2023</p>
-                </li>
-              </ul>
-            </div>
-          </aside>
         </div>
       </section>
 
-      <!-- Skills -->
-      <section id="skills" class="scroll-mt-24 py-10">
-        <div class="sectionHead">
-          <h2 class="text-2xl font-semibold tracking-tight">Skills</h2>
-          <p class="mt-2 text-sm text-zinc-400">Because I'm a hybrid professional (Mechanical and Software Engineering), I divided my skills for better understanding.</p>
-        </div>
-
-        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card cardHover">
-            <h3 class="font-medium">Core Web</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">TypeScript</span>
-              <span class="chip">APIs</span>
-            </div>
+      <!-- Certifications Section -->
+      <section id="certifications" class="py-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="section-header">
+            <h2 class="section-title">Certifications</h2>
+            <div class="section-line"></div>
+            <p class="text-zinc-500 mt-4">Industry-recognized credentials - click any badge to verify</p>
           </div>
 
-          <div class="card cardHover">
-            <h3 class="font-medium">Frontend</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">React</span>
-              <span class="chip">Webpack</span>
-              <span class="chip">Next.js</span>
-              <span class="chip">Responsive UI</span>
-            </div>
-          </div>
+          <div class="mt-12">
+            <div class="cert-grid-new">
+              <!-- Credly Badges -->
+              <div class="cert-card-new">
+                <div data-iframe-width="160" data-iframe-height="154"
+                  data-share-badge-id="e46a9de7-365e-4fb2-b1b6-1d1fe5ec1685"
+                  data-share-badge-host="https://www.credly.com"></div>
+              </div>
 
-          <div class="card cardHover">
-            <h3 class="font-medium">Backend</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">Node.js</span>
-              <span class="chip">Express.js</span>
-              <span class="chip">REST APIs</span>
-              <span class="chip">GraphQL</span>
-              <span class="chip">Python</span>
-            </div>
-          </div>
+              <div class="cert-card-new">
+                <div data-iframe-width="160" data-iframe-height="154"
+                  data-share-badge-id="8f92f9e3-9038-4f2e-9116-137a334ea720"
+                  data-share-badge-host="https://www.credly.com"></div>
+              </div>
 
-          <div class="card cardHover">
-            <h3 class="font-medium">Software Engineering Ops</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">Git</span>
-              <span class="chip">Docker</span>
-              <span class="chip">CI/CD pipelines</span>
-              <span class="chip">Linux</span>
-              <span class="chip">Nginx</span>
-            </div>
-          </div>
+              <div class="cert-card-new">
+                <div data-iframe-width="160" data-iframe-height="154"
+                  data-share-badge-id="4900e033-a63f-44d1-8825-926077941022"
+                  data-share-badge-host="https://www.credly.com"></div>
+              </div>
 
-          <div class="card cardHover">
-            <h3 class="font-medium">Data</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">SQL</span>
-              <span class="chip">PostgreSQL</span>
-              <span class="chip">MongoDB</span>
-              <span class="chip">Data Modeling</span>
-            </div>
-          </div>
+              <div class="cert-card-new">
+                <div data-iframe-width="160" data-iframe-height="154"
+                  data-share-badge-id="8fabb8d6-4c90-46fc-87d5-dcb30c4871f9"
+                  data-share-badge-host="https://www.credly.com"></div>
+              </div>
 
-          <div class="card cardHover">
-            <h3 class="font-medium">Engineering Edge</h3>
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="chip">Data & Trend Analisys</span>
-              <span class="chip">RCFA & FMEA</span>
-              <span class="chip">Machine Learning</span>
-              <span class="chip">Predictive Analytics</span>
-              <span class="chip">IoT & automation</span>
+              <!-- WGU Badges -->
+              <div class="cert-card-new">
+                <a href="https://api.badgr.io/public/assertions/1oEbwQ2mQ4eVjWfLpf4lXQ"
+                   target="_blank" rel="noopener noreferrer">
+                  <img src="https://badges.parchment.com/public/assertions/1oEbwQ2mQ4eVjWfLpf4lXQ/image"
+                       alt="Back-End Developer Certificate" class="cert-img" />
+                </a>
+              </div>
+
+              <div class="cert-card-new">
+                <a href="https://api.badgr.io/public/assertions/mvGGk6xfSDudCRVrycxwPA"
+                   target="_blank" rel="noopener noreferrer">
+                  <img src="https://api.badgr.io/public/assertions/mvGGk6xfSDudCRVrycxwPA/image"
+                       alt="Front-End Developer Certificate" class="cert-img" />
+                </a>
+              </div>
+
+              <!-- ITIL Badge -->
+              <div class="cert-card-new">
+                <a href="https://badges.peoplecert.org/Badge/en/0B906EF9-147D-4E4D-A32F-DC92171923BB"
+                   target="_blank" rel="noopener noreferrer">
+                  <img src="https://badges.peoplecert.org/Badges/Template/en/180/ec721fda-bb43-434e-8ef8-e99f8c748ee4"
+                       alt="ITIL 4 Foundation" class="cert-img" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Projects -->
-      <section id="projects" class="scroll-mt-24 py-10">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div class="sectionHead">
-            <h2 class="text-2xl font-semibold tracking-tight">Projects</h2>
-            <p class="mt-2 text-sm text-zinc-400">Here are some real repos, that I've created throughout my career.</p>
+      <!-- Projects Section -->
+      <section id="projects" class="py-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="section-header">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-line"></div>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex justify-end mt-8 mb-6">
             <input
               id="projectSearch"
-              class="w-full sm:w-64 rounded-xl border border-zinc-800 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-700"
+              type="text"
               placeholder="Search projects..."
+              class="search-input"
             />
           </div>
-        </div>
 
-        <div id="projectGrid" class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <article class="project card projectCard" data-tags="frontend html css javascript forms validation responsive">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-lg font-medium">Front-End Web Development</h3>
-              <span class="badge">UI</span>
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-              Multi-page responsive site with structured content, forms, and client-side validation.
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">JavaScript</span>
-            </div>
-            <div class="mt-5 flex gap-3 text-sm">
-              <a class="link" href="https://github.com/wallacemendoza/front-end-web-development" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
+          <div id="projectGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article class="project project-card" data-tags="frontend html css javascript">
+              <div class="project-glow"></div>
+              <div class="relative z-10">
+                <div class="flex items-start justify-between mb-4">
+                  <div class="project-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                  </div>
+                  <span class="project-badge">UI</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Front-End Development</h3>
+                <p class="text-sm text-zinc-400 mb-4">Multi-page responsive site with structured content, forms, and client-side validation.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="project-tag">HTML</span>
+                  <span class="project-tag">CSS</span>
+                  <span class="project-tag">JavaScript</span>
+                </div>
+                <a href="https://github.com/wallacemendoza/front-end-web-development" target="_blank" class="project-link">
+                  View Code
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
 
-          <article class="project card projectCard" data-tags="git github branching merging conflicts tags documentation">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-lg font-medium">Version Control</h3>
-              <span class="badge">Workflow</span>
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-              Git workflows: branching, merging, conflict resolution, tagging, and documentation discipline.
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip">Git</span>
-              <span class="chip">GitHub</span>
-            </div>
-            <div class="mt-5 flex gap-3 text-sm">
-              <a class="link" href="https://github.com/wallacemendoza/version-control" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
+            <article class="project project-card" data-tags="git github workflow">
+              <div class="project-glow"></div>
+              <div class="relative z-10">
+                <div class="flex items-start justify-between mb-4">
+                  <div class="project-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <span class="project-badge">Workflow</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Version Control</h3>
+                <p class="text-sm text-zinc-400 mb-4">Git workflows: branching, merging, conflict resolution, tagging, and documentation discipline.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="project-tag">Git</span>
+                  <span class="project-tag">GitHub</span>
+                </div>
+                <a href="https://github.com/wallacemendoza/version-control" target="_blank" class="project-link">
+                  View Code
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
 
-          <!-- You can always duplicate cards like these and swap content to match your GitHub projects -->
-          <article class="project card projectCard" data-tags="node api backend postgres auth crud">
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-lg font-medium">Developer Portfolio</h3>
-              <span class="badge">UI/Frontend</span>
-            </div>
-            <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-              Personal portfolio showcasing projects, skills, and engineering background.
-            </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="chip">JavaScript</span>
-              <span class="chip">HTML</span>
-              <span class="chip">Tailwind</span>
-            </div>
-            <div class="mt-5 flex gap-3 text-sm">
-              <a class="link" href="https://github.com/wallacemendoza/portfolio" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
+            <article class="project project-card" data-tags="portfolio frontend tailwind">
+              <div class="project-glow"></div>
+              <div class="relative z-10">
+                <div class="flex items-start justify-between mb-4">
+                  <div class="project-icon">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                    </svg>
+                  </div>
+                  <span class="project-badge">UI/Frontend</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Developer Portfolio</h3>
+                <p class="text-sm text-zinc-400 mb-4">Personal portfolio showcasing projects, skills, and engineering background.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="project-tag">JavaScript</span>
+                  <span class="project-tag">HTML</span>
+                  <span class="project-tag">Tailwind</span>
+                </div>
+                <a href="https://github.com/wallacemendoza/portfolio" target="_blank" class="project-link">
+                  View Code
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <!-- Contact -->
-      <section id="contact" class="scroll-mt-24 py-10 pb-20">
-        <div class="sectionHead">
-          <h2 class="text-2xl font-semibold tracking-tight">Contact</h2>
-          <p class="mt-2 text-sm text-zinc-400">Fastest way: email.</p>
+      <!-- Contact Section -->
+      <section id="contact" class="py-20 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="section-header">
+            <h2 class="section-title">Let's Build Together</h2>
+            <div class="section-line"></div>
+            <p class="text-zinc-500 mt-4">Open to new opportunities and collaborations</p>
+          </div>
+
+          <div class="max-w-2xl mx-auto mt-12">
+            <div class="contact-card">
+              <div class="text-center mb-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full status-badge mb-6">
+                  <span class="pulse-dot"></span>
+                  <span class="text-xs font-mono uppercase tracking-wider">Available Now</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Ready to collaborate?</h3>
+                <p class="text-zinc-400">Fastest response via email</p>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:wmendoza.dev@outlook.com" class="cta-btn primary-btn justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                  wmendoza.dev@outlook.com
+                </a>
+                <button id="copyEmail" class="cta-btn secondary-btn justify-center">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Copy Email
+                </button>
+              </div>
+
+              <p id="copyStatus" class="text-center text-sm text-green-400 mt-4"></p>
+
+              <div class="flex justify-center gap-6 mt-8 pt-8 border-t border-zinc-800/50">
+                <a href="https://github.com/wallacemendoza" target="_blank" class="social-link-large">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/wallacemendoza/" target="_blank" class="social-link-large">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="btn btn-primary"
-             href="mailto:wmendoza.dev@outlook.com">
-            wmendoza.dev@outlook.com
-          </a>
-
-          <button id="copyEmail" class="btn btn-ghost" type="button">
-            Copy email
-          </button>
-
-          <a class="btn btn-glow"
-             href="https://www.linkedin.com/in/wallacemendoza/" target="_blank" rel="noreferrer">
-            Message on LinkedIn
-          </a>
-        </div>
-
-        <p id="copyStatus" class="mt-3 text-sm text-zinc-400"></p>
       </section>
+
     </main>
 
-    <footer class="border-t border-zinc-800/60 bg-zinc-950/40">
-      <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-zinc-500">
-        © <span id="year"></span> Wallace Mendoza
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-zinc-900/50 py-12">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="text-sm text-zinc-500">
+            © <span id="year"></span> Wallace Mendoza. Crafted with precision.
+          </div>
+          <div class="flex gap-4 text-xs text-zinc-600">
+            <span class="font-mono">v2.0.0</span>
+            <span>•</span>
+            <span>Built with Tailwind CSS</span>
+          </div>
+        </div>
       </div>
     </footer>
 
-    <script src="./script.js?v=9"></script>
+    <script src="./script.js?v=10"></script>
+    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
   </body>
 </html>
