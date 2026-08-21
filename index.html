@@ -28,7 +28,7 @@
       * { box-sizing: border-box; }
     </style>
 
-    <link rel="stylesheet" href="./styles.css?v=10" />
+    <link rel="stylesheet" href="./styles.css?v=11" />
     <meta name="cf-email-protection" content="off" />
 
     <link rel="icon" href="./favicon.ico?v=3" sizes="any">
@@ -38,6 +38,28 @@
   </head>
 
   <body class="bg-black text-zinc-100 antialiased overflow-x-hidden">
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-logo font-mono">WM<span class="text-cyan-400">://</span></div>
+        <div class="preloader-bar"><div id="preloaderFill" class="preloader-fill"></div></div>
+        <div class="preloader-status font-mono">
+          <span>INITIALIZING INTERFACE</span>
+          <span><span id="preloaderPct">0</span>%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursorDot" class="cursor-dot"></div>
+    <div id="cursorRing" class="cursor-ring"></div>
+
+    <!-- Scroll Progress -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <!-- Noise / Scanline Overlay -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Animated Background -->
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -198,7 +220,8 @@
       <section id="about" class="py-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="section-header">
-            <h2 class="section-title">About Me</h2>
+            <span class="section-kicker">01 // PROFILE</span>
+            <h2 class="section-title" data-scramble>About Me</h2>
             <div class="section-line"></div>
           </div>
 
@@ -270,7 +293,8 @@
       <section id="skills" class="py-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="section-header">
-            <h2 class="section-title">Technical Arsenal</h2>
+            <span class="section-kicker">02 // STACK</span>
+            <h2 class="section-title" data-scramble>Technical Arsenal</h2>
             <div class="section-line"></div>
             <p class="text-zinc-500 mt-4">Hybrid skill set spanning software engineering and systems optimization</p>
           </div>
@@ -378,7 +402,8 @@
       <section id="certifications" class="py-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="section-header">
-            <h2 class="section-title">Certifications</h2>
+            <span class="section-kicker">03 // CREDENTIALS</span>
+            <h2 class="section-title" data-scramble>Certifications</h2>
             <div class="section-line"></div>
             <p class="text-zinc-500 mt-4">Industry-recognized credentials - click any badge to verify</p>
           </div>
@@ -444,7 +469,8 @@
       <section id="projects" class="py-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="section-header">
-            <h2 class="section-title">Featured Projects</h2>
+            <span class="section-kicker">04 // WORK</span>
+            <h2 class="section-title" data-scramble>Featured Projects</h2>
             <div class="section-line"></div>
           </div>
 
@@ -545,7 +571,8 @@
       <section id="contact" class="py-20 scroll-mt-20">
         <div class="max-w-7xl mx-auto px-6">
           <div class="section-header">
-            <h2 class="section-title">Let's Build Together</h2>
+            <span class="section-kicker">05 // CONNECT</span>
+            <h2 class="section-title" data-scramble>Let's Build Together</h2>
             <div class="section-line"></div>
             <p class="text-zinc-500 mt-4">Open to new opportunities and collaborations</p>
           </div>
@@ -603,7 +630,7 @@
             © <span id="year"></span> Wallace Mendoza. Crafted with precision.
           </div>
           <div class="flex gap-4 text-xs text-zinc-600">
-            <span class="font-mono">v2.0.0</span>
+            <span class="font-mono">v3.0.0</span>
             <span>•</span>
             <span>Built with Tailwind CSS</span>
           </div>
@@ -611,7 +638,7 @@
       </div>
     </footer>
 
-    <script src="./script.js?v=10"></script>
+    <script src="./script.js?v=11"></script>
     <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
   </body>
